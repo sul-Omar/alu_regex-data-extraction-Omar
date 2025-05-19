@@ -1,0 +1,32 @@
+import re
+
+# 1. Phone number validation
+def validate_phone(phone):
+    pattern = r'^(\(\d{3}\)\s|\d{3}[-.])\d{3}[-.]\d{4}$'
+    return bool(re.match(pattern, phone))
+
+# 2. Credit card number validation
+def validate_credit_card(card):
+    pattern = r'^\d{4}([- ]?)\d{4}\1\d{4}\1\d{4}$'
+    return bool(re.match(pattern, card))
+
+# 3. Time validation
+def validate_time(time):
+    pattern_24hr = r'^([01]?\d|2[0-3]):[0-5]\d$'
+    pattern_12hr = r'^(0?[1-9]|1[0-2]):[0-5]\d\s?(AM|PM|am|pm)$'
+    return bool(re.match(pattern_24hr, time)) or bool(re.match(pattern_12hr, time))
+
+# 4. Hashtag validation
+def validate_hashtag(tag):
+    pattern = r'^#[A-Za-z0-9_]+$'
+    return bool(re.match(pattern, tag))
+
+#codes of implementation
+print(validate_phone("(123) 456-7890"))     
+print(validate_phone("123.456.7890"))      
+print(validate_credit_card("1234-5678-9012-3456"))  
+print(validate_credit_card("1234 5678 9012 3456")) 
+print(validate_time("14:30"))               
+print(validate_time("2:30 PM"))             
+print(validate_hashtag("#ThisIsAHashtag"))  
+print(validate_hashtag("NoHash"))           
